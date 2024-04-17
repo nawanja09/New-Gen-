@@ -1,7 +1,8 @@
-// Import React, useEffect, useState, and useRef
 import React, { useEffect, useState, useRef } from "react";
 import Chart from "chart.js/auto";
 import { Sidebar } from "flowbite-react";
+import ManageAccessories from "./ManageAccessories";
+
 
 // NavigationBar component
 const NavigationBar = () => {
@@ -24,6 +25,8 @@ const Dashboard = () => {
   const outOfStockCount = 20;
   const categoryCount = 3;
   const stockValue = "$100";
+
+  
 
   // Sample sales data for 12 months
   const salesData = [
@@ -247,11 +250,13 @@ const Dashboard = () => {
     }
   }, [pieChartConfig]);
 
+  
   return (
     <div className="py-10 my-12">
       {/* Include the NavigationBar component */}
       <NavigationBar />
       {/* Dashboard content */}
+
       <div className="flex flex-col space-y-4">
         {/* Row 1 */}
         <div className="flex flex-row space-x-4">

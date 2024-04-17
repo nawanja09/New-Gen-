@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import axios from "axios";
 
 const ManageAccessories = () => {
   const [allAccessories, setAllAccessories] = useState([]);
@@ -13,40 +14,56 @@ const ManageAccessories = () => {
   const [outOfStockItems, setOutOfStockItems] = useState(0);
   const [fullTotalValue, setFullTotalValue] = useState(0);
 
+  
+
   useEffect(() => {
-    fetch("http://localhost:8000/all-accessories")
-      .then((res) => res.json())
-      .then((data) => setAllAccessories(data))
-      .catch((error) => console.error("Error fetching accessories:", error));
+    fetchAccessories();
   }, []);
 
   useEffect(() => {
     const filtered = allAccessories.filter((accessory) => {
-      const nameMatch = accessory.AccessoriesName.toLowerCase().includes(
-        searchTerm.toLowerCase()
-      );
+      const nameMatch =
+        accessory.AccessoriesName &&
+        accessory.AccessoriesName.toLowerCase().includes(
+          searchTerm.toLowerCase()
+        );
       const dateMatch =
-        (!startDate || accessory.updatedAt >= startDate) &&
-        (!endDate || accessory.updatedAt <= endDate);
+        (!startDate || new Date(accessory.updatedAt) >= new Date(startDate)) &&
+        (!endDate || new Date(accessory.updatedAt) <= new Date(endDate));
       return nameMatch && dateMatch;
     });
     setFilteredAccessories(filtered);
-    // Calculate full stock level, out of stock items, and full total value
+    calculateInventoryValues(filtered);
+  }, [allAccessories, searchTerm, startDate, endDate]);
+
+  const fetchAccessories = () => {
+    axios
+      .get("http://localhost:8000/all-accessories")
+      .then((response) => {
+        setAllAccessories(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching accessories:", error);
+      });
+  };
+
+  const calculateInventoryValues = (filtered) => {
     let totalQuantity = 0;
     let totalValue = 0;
     let outOfStockCount = 0;
     filtered.forEach((accessory) => {
-      totalQuantity += parseInt(accessory.Quantity);
+      totalQuantity += parseInt(accessory.Quantity || 0);
       totalValue +=
-        parseInt(accessory.Quantity) * parseFloat(accessory.Price_per_unit);
-      if (parseInt(accessory.Quantity) === 0) {
+        parseInt(accessory.Quantity || 0) *
+          parseFloat(accessory.Price_per_unit || 0) || 0;
+      if (parseInt(accessory.Quantity || 0) === 0) {
         outOfStockCount++;
       }
     });
     setFullStockLevel(totalQuantity);
     setOutOfStockItems(outOfStockCount);
     setFullTotalValue(totalValue);
-  }, [allAccessories, searchTerm, startDate, endDate]);
+  };
 
   const handleDateChange = (type, date) => {
     if (type === "start") {
@@ -57,17 +74,17 @@ const ManageAccessories = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:8000/accessories/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
+    axios
+      .delete(`http://localhost:8000/accessories/${id}`)
+      .then(() => {
         alert("Accessory Deleted Successfully!");
         setAllAccessories(
           allAccessories.filter((accessory) => accessory._id !== id)
         );
       })
-      .catch((error) => console.error("Error deleting accessory:", error));
+      .catch((error) => {
+        console.error("Error deleting accessory:", error);
+      });
   };
 
   const generatePDF = () => {
@@ -75,11 +92,13 @@ const ManageAccessories = () => {
     doc.text("Accessories Report", 10, 10);
     const tableData = filteredAccessories.map((accessory, index) => [
       index + 1,
-      accessory.AccessoriesID,
-      accessory.AccessoriesName,
-      accessory.updatedAt,
-      accessory.Quantity,
-      accessory.Quantity * accessory.Price_per_unit,
+      accessory.AccessoriesID || "",
+      accessory.AccessoriesName || "",
+      accessory.updatedAt || "",
+      accessory.Quantity || "",
+      accessory.Quantity && accessory.Price_per_unit
+        ? accessory.Quantity * accessory.Price_per_unit
+        : "",
     ]);
     doc.autoTable({
       head: [
@@ -167,10 +186,14 @@ const ManageAccessories = () => {
               <td className="text-center">{accessory.Price_per_unit}</td>
               <td className="text-center">{accessory.Description}</td>
               <td className="text-center">
-                {new Date(accessory.updatedAt).toLocaleDateString()}
+                {accessory.updatedAt
+                  ? new Date(accessory.updatedAt).toLocaleDateString()
+                  : ""}
               </td>
               <td className="text-center">
-                {accessory.Quantity * accessory.Price_per_unit}
+                {accessory.Quantity && accessory.Price_per_unit
+                  ? accessory.Quantity * accessory.Price_per_unit
+                  : ""}
               </td>
               <td className="text-right">
                 <Link

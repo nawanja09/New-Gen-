@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Label, TextInput, Textarea } from "flowbite-react";
-import { data } from "autoprefixer";
 
 const UploadAccessories = () => {
   const category = [
@@ -12,11 +11,10 @@ const UploadAccessories = () => {
   const [selectedCategory, setSelectedCategory] = useState(category[0]);
 
   const handleChangeSelectedValue = (event) => {
-    console.log(event.target.value);
-    setSelectedCategory(event.target.value);
+    setSelectedCategory(event.target.options[event.target.selectedIndex].value);
   };
 
-  //Handle Book Submission
+  //Handle Accessories Submission
   const handleAccessoriesSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -24,8 +22,8 @@ const UploadAccessories = () => {
     const AccessoriesID = form.AccessoriesID.value;
     const AccessoriesName = form.AccessoriesName.value;
     const Category = form.Category.value;
-    const Quantity = form.Quantity.value;
-    const Price_per_unit = form.Price_per_unit.value;
+    const Quantity = parseInt(form.Quantity.value);
+    const Price_per_unit = parseFloat(form.Price_per_unit.value);
     const Description = form.Description.value;
 
     const accessoriesObj = {
@@ -37,10 +35,7 @@ const UploadAccessories = () => {
       Description,
     };
 
-    //console.log(accessoriesObj);
-
     //send data to database
-
     fetch("http://localhost:8000/upload-accessories", {
       method: "POST",
       headers: {
@@ -58,15 +53,14 @@ const UploadAccessories = () => {
       })
       .then((data) => {
         alert("Accessories Uploaded Successfully");
-        form.reset();
       })
       .catch((error) => {
-        console.error("Error during fetch:", error);
-        alert(error.message); // Display the error message to the user
+        alert(error.message); // Display error message to user
       });
   };
+
   return (
-    <div className="py-10 my-12 ">
+    <div className="py-10 my-12">
       <h2 className="mb-8 text-3xl font-bold">Upload Accessories</h2>
       <form
         onSubmit={handleAccessoriesSubmit}
