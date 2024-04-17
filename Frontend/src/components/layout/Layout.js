@@ -9,6 +9,7 @@ const Layout = ({ children }) => {
       <div className="--pad" style={{ minHeight: "80vh" }}>
         {children}
       </div>
+     
       <Footer />
     </>
   );

@@ -376,11 +376,15 @@ const verifyUser = asyncHandler(async (req, res) => {
 });
 
 // Logout User
-const logoutUser = asyncHandler(async (req, res) => {
+const logoutUser = asyncHandler(async (req, res) => { 
+
+  const oneHourFromNow = new Date();
+  oneHourFromNow.setHours(oneHourFromNow.getHours() + 1);
+
   res.cookie("token", "", {
     path: "/",
     httpOnly: true,
-    expires: new Date(0), // 1 day
+    expires: oneHourFromNow, // 1 hour
     sameSite: "none",
     secure: true,
   });
