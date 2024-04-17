@@ -53,6 +53,7 @@ const ChangeRole = ({ _id, email }) => {
           <option value="Finance Manager">Finance Manager</option>
           <option value="Supplire Manager">Supplire Manager</option>
           <option value="Inventory Manager">Inventory Manager</option>
+                                                                                                              
         </select>
         <button className="--btn --btn-primary">
           <FaCheck size={15} />
