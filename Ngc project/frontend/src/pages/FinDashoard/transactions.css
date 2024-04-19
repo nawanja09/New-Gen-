@@ -1,0 +1,66 @@
+.primary{
+  margin-left:2%;
+}
+.filter {
+  box-shadow: 0 0 3px #a9a4a4;
+  width: 100%;
+  height: 55%;
+  padding:2% 2% 2% 2%;
+  
+}
+table {
+  margin-top:4%;
+  font-family: "Montserrat", sans-serif !important;
+}
+.ant-picker-clear {
+  
+  display: none;
+  
+}
+.view-switch {
+  border: px solid rgba(0, 0, 0, 0.478);
+  padding:2% 0% 2% 0%;
+
+}
+
+
+.anticon svg {
+  font-size: 20px;
+  cursor: pointer;
+  
+}
+
+.active-icon {
+  color: black;
+ 
+}
+
+.inactive-icon {
+  color: grey;
+  
+}
+
+.secondary {
+  background-color: #91b0ea;
+  padding: 5px 20px;
+  color: white;
+  border: none;
+}
+.secondary:hover {
+  color: white !important;
+}
+.on-point{
+  margin-bottom: 100%;
+}
+.mx-3{
+color: red;
+}
+.mx-4{
+  color: rgb(0, 30, 255);
+  }
+  .mx-2{
+
+padding-right: 2%;
+
+  }
+  

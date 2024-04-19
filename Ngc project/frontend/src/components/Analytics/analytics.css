@@ -1,0 +1,47 @@
+.transactions-count {
+  box-shadow: 0 0 2px grey;
+  padding: 15px;
+  text-align: start;
+  margin-top:4%;
+}
+
+.analytics h4 {
+  font-size: 20px;
+  text-align: start;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  margin-top:2%;
+}
+
+.category-card {
+  padding: 5px 20px;
+  box-shadow: 0 0 2px grey;
+  margin-top: 15px;
+  margin-top:2%;
+  border-radius: 10px;
+}
+.mx-5{
+padding-top:2%;
+padding-right: 2%;
+}
+.hi{
+
+ 
+    font-size: 16px;
+    color: rgb(84, 206, 98);
+    text-align: start;
+   
+  
+
+}
+
+.he{
+
+ 
+  font-size: 16px;
+  color: rgb(206, 84, 84);
+  text-align: start;
+ 
+
+
+}
