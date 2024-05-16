@@ -1,0 +1,56 @@
+.header {
+  background: linear-gradient(to left, #003e46, #0f0032,#001a2a);
+  height: 7rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 20px;
+ 
+
+  & nav {
+    width: 100%;
+    max-width: 1100px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+
+
+    & > .logo {
+      color: rgb(255, 255, 255);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+      cursor: pointer;
+    }
+  }
+}
+.home-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  & li a {
+    font-size:13px;
+    color:white;
+  }
+  & > * {
+    margin-left:1.2rem;
+    color: white;
+  }
+ 
+}
+.home-links :hover {
+  color: rgb(94, 244, 254);
+  
+}
+.--flex-center{
+  color: rgb(255, 255, 255);
+  
+}
+.mada{
+  color: rgb(255, 255, 255);
+}
+

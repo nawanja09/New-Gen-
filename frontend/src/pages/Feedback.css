@@ -1,0 +1,38 @@
+/* Container background */
+.bg-info {
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+/* Form container */
+.bg-warning {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Form labels */
+label {
+    font-weight: bold;
+}
+
+/* Rating range */
+#ratingRange {
+    width: 100%;
+}
+
+/* Submit button */
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}

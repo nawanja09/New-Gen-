@@ -1,0 +1,102 @@
+.container {
+    margin-top: 20px; /* Adjust top margin as needed */
+  }
+  
+  .product-details {
+    padding: 20px; /* Add padding to the product details section */
+  }
+  
+  .product-details img {
+    max-width: 50%; /* Ensure image fits within container */
+    max-height: 30%;
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Rounded corners */
+  
+    margin-left: 220Px;
+  }
+  
+  .product-details-info {
+    padding: 0 20px; /* Add padding to product details info */
+  }
+  
+  
+  .product-details-info hr {
+    margin-top: 10px; /* Add space below horizontal rule */
+  }
+  
+  .similar-products {
+    padding: 20px; /* Add padding to similar products section */
+  }
+  
+  .similar-products h4 {
+    margin-bottom: 10px; /* Add space below heading */
+  }
+  
+  .similar-products p {
+    margin-top: 10px; /* Add space above paragraph */
+  }
+  
+
+ 
+  .card-img-top {
+    border-top-left-radius: 8px; /* Adjust border radius for top left corner */
+    border-top-right-radius: 8px; /* Adjust border radius for top right corner */
+  }
+  
+  .card-body {
+    padding: 15px; /* Add padding to card body */
+  }
+  
+  .card-name-price {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space between elements */
+  }
+  
+  .card-title {
+    margin-bottom: 5px; /* Add space below title */
+  }
+  
+  .card-text {
+    margin-bottom: 10px; /* Add space below text */
+  }
+  
+  .btn {
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Show pointer cursor on hover */
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d; /* Gray color for button */
+    color: #fff; /* White text color */
+  }
+  
+  .btn-info {
+    background-color: #17a2b8; /* Blue color for button */
+    color: #fff; /* White text color */
+  }
+  
+  .btn-info:hover,
+  .btn-secondary:hover {
+    opacity: 0.8; /* Reduce opacity on hover */
+  }
+  .cp{
+
+margin-left: 350px;;
+font-size:28px;
+font-family:'Times New Roman';
+
+  }
+  .btn-danger {
+    width: 50%;
+    padding: 10px 0;
+    border: none;
+    border-radius: 8px;
+    background-color: #013b43;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-danger:hover {
+    background-color: #00d1d1;
+  }
